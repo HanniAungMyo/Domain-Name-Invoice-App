@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invoice App</title>
+    <link rel="stylesheet" href="../dist/output.css">
+</head>
+<body>
+    <main id="app">
+        <header class="max-w-[400px] md:max-w-[550] mx-auto py-3 ">
+            <h1 class="font-bold text-3xl">MMS Solution</h1>
+            <p class="text-neutral-400">Invoice App</p>
+        </header>
+        <!-- domain list -->
+        <div class="max-w-[450px] md:max-w-[550] mx-auto">
+            <form id="addRecord" action="" class="mb-5 print:hidden">
+                <div class="grid grid-cols-3 gap-3">
+                <select name="product_id" class="border-neutral-600 col-span-3 md:col-span-1 border w-full block p-3" id="">
+                    <option value="">Select Product</option>
+                </select>
+                <input type="number" class="border-neutral-600 col-span-2 md:col-span-1 border w-full block p-3" placeholder="Quantity" name="quantity">
+                <button class="border-neutral-600 border w-full block p-3 bg-neutral-600 text-white">add Record</button>
+            </div>
+            </form>
+            <table class="w-full mb-5">
+                <thead class="bg-neutral-700 text-white">
+                    <tr>
+                        <th class="p-3 ">#</th>
+                        <th class="p-3 text-start w-52">Product</th>
+                        <th class="p-3 text-end">Price</th>
+                        <th class="p-3 text-end">Quantity</th>
+                        <th class="p-3 text-end">Cost</th>
+                    </tr>
+                </thead>
+                <tbody id="recordList">
+                    <tr class=" hidden last:table-row">
+                        <td class="text-center p-3" colspan="5">There is no list</td>
+                    <!-- </tr>
+                    <tr class="border-b-neutral-300 border-b group record-row">
+                        <td class="p-3 "></td>
+                        <td class="p-3 ">Hosting</td>
+                        <td class="p-3 text-end">60</td>
+                        <td class="p-3 text-end"> 
+                            <button class="quantity-decrement bg-neutral-500 p-1 leading-3 opacity-0 group-hover:opacity-100 -translate-x-6 group-hover:translate-x-0 duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                                  </svg>
+                                  
+                            </button>
+                            <span   class="record-row-q">1</span>
+                            <button class="quantity-increment bg-neutral-500 p-1 leading-3 opacity-0 group-hover:opacity-100 translate-x-6 group-hover:translate-x-0 duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                  </svg>
+                                  
+                            </button>
+                        
+                        
+                        </td>
+                        <td class="p-3 text-end relative">
+                        <span class="record-row-cost">60</span>
+                        <button class="record-row-del bg-neutral-600 text-white p-2 absolute right-0 translate-x-[120%] h-full duration-300 group-hover:opacity-100 opacity-0 top-0 aspect-square group-hover:translate-x-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 pointer-events-none">
+                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
+                       </svg>
+                       
+                       </button>
+                        </td></tr> -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="p-3 text-end bg-neutral-400 text-white" colspan="4">Total</td>
+                        <td class="p-3 text-end bg-neutral-400 text-white " id="costTotal">0</td>
+                    </tr>
+                </tfoot>
+            </table>
+            
+            <div id="manageProductBox" class="fixed w-96 h-screen bg-white top-0 right-0 z-50 translate-x-full shadow-lg">
+        <div class="flex justify-between p-3 border-b-2">
+                <p class="text-3xl font-bold ">
+                Manage Service
+              </p>
+              <button id="closeBtn"  class="border border-neutral-500 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  
+              </button>
+              </div>
+              <div id="serviceList" class="p-3 ">
+               
+              </div>
+              <form action="" id="addService">
+                <div class="grid grid-cols-3 p-3 gap-3">
+                    <input class="border-2 py-2 px-3 w-full col-span-3"  type="text"  placeholder="New Item Name" required name="Service_name">
+                    <input class="border-2 py-2 px-3 w-full col-span-2" type="number" placeholder="Service Price" required name="Service_price">
+                    <button class="border-2 py-2 px-3 w-full col-span-1  bg-neutral-600 border-neutral-700 text-white">Add New</button>
+                </div>
+              </form>
+            </div>
+            <div class="flex print:hidden justify-end gap-3">
+                <button class="border-neutral-600 border  block px-3 py-2 text-neutral-600 " id="manageProduct">Manage Service</button>
+            <button class="border-neutral-600 border block px-3 py-2 bg-neutral-600 text-white" id="Print">Print</button>
+            </div>
+            <h1 class="hidden print:block">Thank You for Buy</h1>
+        </div>
+    </main>
+
+    <script src="../index.js"></script>
+</body>
+</html>
